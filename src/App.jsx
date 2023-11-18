@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Game from './components/Game';
+import NewGameForm from './components/NewGameForm';
 
 function App() {
     const [games, setGames] = useState(() => {
@@ -7,8 +8,7 @@ function App() {
         if (!storedGames) return [];
         return JSON.parse(storedGames);
     });
-    const [title, setTitle] = useState('');
-    const [cover, setCover] = useState('');
+    
 
     const addGame = ({ title, cover }) => {
         const id = Math.floor(Math.random() * 100000);
@@ -28,41 +28,11 @@ function App() {
         });
     };
 
-    const handleSubmit = (ev) => {
-        ev.preventDefault();
-        addGame({ title, cover });
-        setTitle('');
-        setCover('');
-    };
 
     return (
         <div id="app">
             <h1>Bibiloteca de jogos</h1>
-            <form className="form" onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="title">Título</label>
-                    <input
-                        type="text"
-                        id="title"
-                        name="title"
-                        placeholder="Nome do jogo"
-                        value={title}
-                        onChange={(ev) => setTitle(ev.target.value)}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="cover">Capa:</label>
-                    <input
-                        type="text"
-                        id="cover"
-                        name="cover"
-                        placeholder="Link da imagem"
-                        value={cover}
-                        onChange={(ev) => setCover(ev.target.value)}
-                    />
-                </div>
-                <button type="submit">Adicionar à biblioteca</button>
-            </form>
+            <NewGameForm addGame={addGame}/>
             <div className="games">
                 {games.map((game) => (
                     <Game
