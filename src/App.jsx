@@ -10,14 +10,17 @@ function App() {
             <h1>Bibiloteca de jogos</h1>
             <NewGameForm addGame={addGame} />
             <div className="games">
-                {games.map((game) => (
+                {games.length > 0 ? games.map((game) => (
                     <Game
-                        key={game.id}
-                        title={game.title}
-                        cover={game.cover}
-                        onRemove={() => removeGame(game.id)}
+                    key={game.id}
+                    title={game.title}
+                    cover={game.cover}
+                    onRemove={() => removeGame(game.id)}
                     />
-                ))}
+                    ))
+                : (
+                    <h2>Você ainda não pôs nada aqui, Adicione um jogo :)</h2>
+                )}
             </div>
         </div>
     );
