@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import TextInput from '../TextInput/TextInput';
 
 export default function NewGameForm({ addGame }) {
     const [title, setTitle] = useState('');
@@ -13,28 +14,21 @@ export default function NewGameForm({ addGame }) {
 
     return (
         <form className="form" onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="title">Título</label>
-                <input
-                    type="text"
-                    id="title"
-                    name="title"
-                    placeholder="Nome do jogo"
-                    value={title}
-                    onChange={(ev) => setTitle(ev.target.value)}
-                />
-            </div>
-            <div>
-                <label htmlFor="cover">Capa:</label>
-                <input
-                    type="text"
-                    id="cover"
-                    name="cover"
-                    placeholder="Link da imagem"
-                    value={cover}
-                    onChange={(ev) => setCover(ev.target.value)}
-                />
-            </div>
+            <TextInput
+                label="Título:"
+                id="title"
+                placeholder="Nome do jogo"
+                value={title}
+                setValue={setTitle}
+            />
+            <TextInput
+                label="Capa:"
+                id="cover"
+                placeholder="Link da imagem"
+                value={cover}
+                setValue={setCover}
+            />
+
             <button type="submit">Adicionar à biblioteca</button>
         </form>
     );

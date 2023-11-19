@@ -8,7 +8,6 @@ function App() {
         if (!storedGames) return [];
         return JSON.parse(storedGames);
     });
-    
 
     const addGame = ({ title, cover }) => {
         const id = Math.floor(Math.random() * 100000);
@@ -27,7 +26,6 @@ function App() {
             return newState;
         });
     };
-
 
     return (
         <div id="app">
